@@ -13,10 +13,6 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bund
 # Only keep the last 5 releases to save disk space
 set :keep_releases, 5
 
-set :rbenv_roles, :all
-set :rbenv_ruby, '2.7.5'
-set :rbenv_ruby_dir, '/home/deploy/.rbenv/shims/ruby'
-
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
