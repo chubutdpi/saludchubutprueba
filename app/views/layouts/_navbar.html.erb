@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-azul-chubut">
+  <div class="container">
+    <a class="navbar-brand" href="/"><%= image_tag "logo_ms_blanco.png", style:"max-width:120px;"%></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExample07">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Inicio <span class="sr-only">(current)</span></a>
+        </li>
+        <!--li class="nav-item">
+          <a class="nav-link" href="http://chubut.gov.ar">Chubut</a>
+        </li-->
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administración</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown07">
+              <% if MSConfig::COVIDCASE %>
+                <a class="dropdown-item" href="/covid_cases">Casos Covid</a>
+              <% end %>
+              <a class="dropdown-item" href="/covid_situations">Situación Covid</a>
+              <a class="dropdown-item" href="/notices">Noticias</a>
+            </div>
+        <% end %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Institucional</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown07">
+              <a class="dropdown-item" href="/organigrama">Organigrama</a>
+              <a class="dropdown-item" href="/autoridades">Autoridades</a>
+              <a class="dropdown-item" href="/mvo">Misión y visión</a>
+              <a class="dropdown-item" href="/plan_estrategico">Plan estratégico</a>
+            </div>
+          </li>
+      </ul>
+      <ul class="navbar-nav">
+      <% if user_signed_in? %>
+
+        <%if ENV['RAILS_ENV'].to_s == 'development' %>
+          <li class="nav-item">
+            <%= link_to current_user.roles.first.name.capitalize, "#", :class => "nav-link" %>  
+          </li>    
+        <% end %>
+        
+        <li class="nav-item">
+          <% if !current_user.area.nil? %>
+          <%= link_to current_user.area.upcase, "#", :class => "nav-link" %>
+          <% end %>
+        </li>
+        <li class="nav-item active">
+          <%= link_to "Salir", destroy_user_session_path, :method => :delete, :class => "nav-link" %>
+        </li>
+      
+      <% else %>
+        <li class="nav-item active">
+          <%= link_to "ingresar", new_user_session_path, :class => "nav-link" %>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<script type="text/javascript">
+  $("#createCSV").on("click", createCSV);
+  
+  function createCSV(){
+    $.ajax({
+      url: '/create_csv',
+      type: 'POST'
+    }).done(function(data) {
+      console.log("Se creo el archivo");
+    }).fail(function(xhr, status, error) {
+      console.log("Fallo la carga");
+    });
+  }
+</script>

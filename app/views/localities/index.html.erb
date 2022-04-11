@@ -1,0 +1,23 @@
+<div class="container">
+<col class="row">
+	<h2 class="col-12 pt-2">Localidades</h2>
+</col>
+
+
+
+<table id="localities-datatable" data-source="<%= localities_path(format: :json) %>">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Area</th>
+      <th>¿Habilitada?</th>
+      <th>Opciones</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'Nueva Localidad', new_locality_path, class: "btn btn-primary"%>
+</div>

@@ -1,0 +1,42 @@
+<div class="container">
+	<div class="row">
+	<h2 class="col-12 pt-2"><%= fa_icon "newspaper-o" %> Portal de Noticias</h2>
+	</div>
+	<% if (!@current_user.nil? and @current_user.communication?) %>
+	<div class="col-12">
+  <table class="responsive nowrap table table-hover " id="dttb-notices" data-sort="true" data-source="<%= url_for(format: :json)%>">
+	  <thead>
+	    <tr>
+	      <th data-data="fecha">Fecha</th>
+	      <th data-data="titulo">Titulo</th>
+	      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px">Opciones</th>
+	    </tr>
+	  </thead>
+
+	</table>
+	<br>
+	<%= link_to 'Cargar Noticia', new_notice_path, class: "btn btn-primary", class:'btn btn-primary' %>
+	</div>
+	<%end%>
+
+	<% if (!Notice.count.zero?) %>
+		<%= paginate @notices_all %>
+		<div class="row justify-content-md around">
+			<% @notices_all.each_with_index do |notice, index| %>
+			<div class="col-xs-12 col-sm-4"> 
+				<a href="/notices/<%= notice.id %>" class="panel panel-default">
+					<div style="background-image:url( <%= url_for(notice.image) %> ); height: 200px;" class="panel-heading"></div>
+					<div class="panel-body"> 
+						<h3>
+							<%= truncate(notice.titulo, :length => 100) %>  
+						</h3>
+					</div>
+				</a>
+			</div>
+			<% end %>
+		</div>
+		<%= paginate @notices_all %>
+	<% end %>	
+</div>
+
+

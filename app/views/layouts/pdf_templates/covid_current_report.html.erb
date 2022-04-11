@@ -1,0 +1,92 @@
+<head>
+  <title>PDF</title>
+  <%= wicked_pdf_stylesheet_link_tag "application" -%>
+  <style type="text/css">
+    .table td {border-top: 1px solid #333;}
+    .table thead th {border-bottom: 1px solid #333;}
+    .table tbody + tbody {border-top: 1px solid #333;}
+    .table-bordered {border: 1px solid #333;}
+    .table-bordered th, .table-bordered td {border: 1px solid #333;}
+  </style>
+</head>
+
+
+<div class="container mb-3">
+  <%= image_tag wicked_pdf_asset_base64('logo_ms.png'), style: "max-width: 200px;"%>
+  <h3 class="text-right mb-3">Rawson, <%= I18n.l Date.today, format: :date_extend %></h3>
+  <h2 class="mb-3">Situación Epidemiológica de COVID-19 Provincia del Chubut</h2>
+  <h3 class="mb-0">Casos Acumulados</h3>
+  <strong class="mb-0 font-italic">Corte de información 15 hs. <%= @corte_informacion %></strong>
+  <table class="table mb-4">
+    <thead class="bg-lighthgray text-center">
+      <th>CASOS CONFIRMADOS CHUBUT</th>
+      <th>CASOS RECUPERADOS CHUBUT</th>
+      <th>CASOS FALLECIDOS CHUBUT</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Nuevos</strong></td>
+        <td><strong>Nuevos</strong></td>
+        <td><strong>Nuevos</strong></td>
+      </tr>
+      <tr>
+        <td><%= @cases_new_reported || 0 %></td>
+        <td><%= @cases_new_recovered_reported || 0 %></td>
+        <td><%= @cases_new_deceased_reported || 0 %></td>
+      </tr>
+      <tr>
+        <td><strong>Acumulados</strong></td>
+        <td><strong>Acumulados</strong></td>
+        <td><strong>Acumulados</strong></td>
+      </tr>
+      <tr>
+        <td><%= @cases_confirm_acumulated || 0 %></td>
+        <td><%= @cases_recovered_acumulated || 0 %></td>
+        <td><%= @cases_deceased_acumulated || 0 %></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 class="mb-0">Situación Epidemiológica por Localidad</h3>
+  <strong class="mb-0 font-italic">Corte de información 15 hs. <%= @corte_informacion %></strong>
+  <table id="part_locality" class="responsive nowrap table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th rowspan="3">LOCALIDAD</th>
+        <th rowspan="3">NUEVOS</th>
+        <th class="bg-lighthgray" colspan="4">COVID19 ACTIVOS</th>
+        <th colspan="3">ACUMULADOS</th>
+        <th class="bg-lighthgray" rowspan="3">TOTAL DE CASOS</th>
+      </tr>
+      <tr>
+        <th class="bg-lighthgray" rowspan="2">AMB.</th>
+        <th class="bg-lighthgray" rowspan="2">CLÍNICA<br>GRAL.</th>
+        <th class="bg-lighthgray" colspan="2">UTI</th>
+        <th rowspan="2">ACT.</th>
+        <th rowspan="2"><div class="vertical-lr">REC.</div></th>
+        <th rowspan="2">FALLEC.</th>
+      </tr>
+      <tr>
+        <th class="bg-lighthgray">S/ARM</th>
+        <th class="bg-lighthgray">C/ARM</th>
+      </tr>
+
+    </thead>
+    <tbody>
+      <% @covid_situations.each do |cs| %>
+        <tr>
+          <td><strong><%= cs.locality.to_s%></strong></td>
+          <td><%= cs.new_cases%></td>
+          <td class="bg-lighthgray"><%= cs.ambulatory%></td>
+          <td class="bg-lighthgray"><%= cs.general_room%></td>
+          <td class="bg-lighthgray"><%= cs.uti_without_arm%></td>
+          <td class="bg-lighthgray"><%= cs.uti_with_arm%></td>
+          <td><%= cs.acumulated_actives%></td>
+          <td><%= cs.acumulated_recovered%></td>
+          <td><%= cs.acumulated_deceased%></td>
+          <td class="bg-lighthgray"><strong><%= cs.acumulated_actives + cs.acumulated_recovered + cs.acumulated_deceased%></strong></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>

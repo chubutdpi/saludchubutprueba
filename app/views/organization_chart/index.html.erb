@@ -1,0 +1,41 @@
+<div class="container">
+	<div class="row">
+		<h2 class="col-12 pt-2"><%= fa_icon "newspaper-o" %> Organigrama del Ministerio de Salud</h2>
+		<div class="col-12 mb-2">
+			<div style="width:100%; height:700px;" id="tree"/></div>
+		</div>
+	</div>
+</div>
+	
+
+<script>
+
+	OrgChart.templates.myTemplate = Object.assign({}, OrgChart.templates.mila);
+	var chart = new OrgChart(document.getElementById("tree"), {
+  	template: "myTemplate",
+  	enableSearch: false,
+  	enableTouch: false,
+  	align: OrgChart.align.center,
+    nodeBinding: {
+      field_0: "Nombre",
+      field_1: "Cargo",
+      img_0: "Foto"
+    },
+    nodes: [
+      { id: 1, Nombre: "Dr. Fabián Puratich", Cargo: "Ministro de Salud", Foto: "http://ministeriodesalud.chubut.gov.ar/archivos/2020/04/Fabi%C3%A1n-Puratich.jpg"  },
+      { id: 2, pid: 1, Nombre: "Dr. Mariano Cabrera", Cargo: "Subsecretario de Gestión Institucional", Foto: "http://ministeriodesalud.chubut.gov.ar/archivos/elementor/thumbs/mariano-cabrera-pajils08ch5cap4kc8dj1vjy6uvog3q3h2gzdeacag.jpg"  },
+      { id: 3, pid: 1, Nombre: "Dra. Jimena Marcos" , Cargo: "Subsecretaria de Planificación y Capacitación", Foto: "http://ministeriodesalud.chubut.gov.ar/archivos/elementor/thumbs/Jimena-Marcos-pajilr2e5n41z35xhpywhdshlh0b8emd4xthw4bqgo.jpg"  },
+      { id: 4, pid: 1, Nombre: "Cra. Viviana YOUGLAR" , Cargo: "Subsecretaria de Gestión y Coordinación de Recursos", Foto: "http://ministeriodesalud.chubut.gov.ar/archivos/elementor/thumbs/Viviana-Youglar-pajils08ch5cap4kc8dj1vjy6uvog3q3h2gzdeacag.jpg"  },
+      { id: 5, pid: 1, Nombre: "Dra. Laura PIZZI", Cargo: "Subsecretaria de Progamas de Salud", Foto: "http://ministeriodesalud.chubut.gov.ar/archivos/elementor/thumbs/Laura-Pizzi-2-pajimdmipnyxpq95tzpy583jupx4d53x81h5ereabc.jpg"  }
+
+    ]
+  });
+
+
+
+
+
+</script> 
+
+
+

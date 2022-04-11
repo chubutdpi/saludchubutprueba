@@ -1,0 +1,2 @@
+module HantavirusHelper
+end

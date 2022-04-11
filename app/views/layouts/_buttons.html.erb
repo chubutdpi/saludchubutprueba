@@ -1,0 +1,32 @@
+<div class="buttons mb-4  bg-gray">
+  <!-- Three columns of text below the carousel -->
+  <div class="container">
+    <div class="row text-center p-4 justify-content-center">
+      <% if !(controller_name === "welcome") %>
+      <div class="col-sm-6 col-md-2">
+        <a href="/" type="button" class="btn btn-home btn-primary btn-rounded btn-icon bg-azul-chubut">
+          <%= image_tag "icono_home.png", class:"img-fluid"%></a><br>
+        <span class="btn-home-text">Home</span>
+      </div><!-- /.col-md-2 -->
+      <% end %>
+      <% if !(controller_name === "covid") %>
+      <div class="col-sm-6 col-md-2">
+        <a href="/covid" type="button" class="btn btn-home btn-primary btn-rounded btn-icon bg-azul-chubut">
+        <%= image_tag "icono_covid.png", class:"img-fluid"%></a><br>
+        <span class="btn-home-text">Covid 19</span>
+      </div><!-- /.col-md-2 -->
+      <% end %>
+      <% if !(controller_name === "notices") %>
+      <div class="col-sm-6 col-md-2">
+        <a href="/notices" type="button" class="btn btn-home btn-primary btn-rounded btn-icon bg-azul-chubut"><%= image_tag "icono_news.png", class:"img-fluid"%></a><br>
+        <span class="btn-home-text">Portal de Noticias</span>
+      </div><!-- /.col-md-4 -->
+      <% end %>
+      <!-- <div class="col-sm-6 col-md-2">
+        <a href="/programs" type="button" class="btn btn-home btn-primary btn-rounded btn-icon bg-azul-chubut"><%= image_tag "icono_programas.png", class:"img-fluid"%></a><br>
+        <span class="btn-home-text">Programas de Salud</span>
+      </div> --> <!-- /.col-md-4 -->
+      
+    </div><!-- /.row -->
+  </div>
+</div>

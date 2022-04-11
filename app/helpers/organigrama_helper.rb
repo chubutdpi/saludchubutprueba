@@ -1,0 +1,2 @@
+module OrganigramaHelper
+end
