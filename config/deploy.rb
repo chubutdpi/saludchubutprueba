@@ -13,6 +13,15 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bund
 # Only keep the last 5 releases to save disk space
 set :keep_releases, 5
 
+set :default_env, {
+    path: '/usr/local/rbenv/plugins/ruby-build/bin:/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH',
+    rbenv_root: '/usr/local/rbenv'
+}
+set :rbenv_roles, :all
+set :rbenv_ruby, '2.2.2'
+set :rbenv_ruby_dir, '/usr/local/rbenv/versions/2.2.2'
+set :rbenv_custom_path, '/usr/local/rbenv'
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
